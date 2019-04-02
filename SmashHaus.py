@@ -1,114 +1,11 @@
-class Player(object):
+from Player import Player
+from DataHandler import DataHandler
 
-    def __init__(self, username='', name='', rating=1200, matches_played=0, wins=0, losses=0):
-        self.username = username
-        self.name = name
-        self.rating = rating
-        self.matches_played = matches_played
-        self.wins = wins
-        self.losses = losses
-
-
-class Data():
-
-    def __init__(self):
-        self.inf = open("information.csv", "r")
-        self.num_players = inf.readline().strip()
-        self.num_players = int(num_players[0])
-        self.out = open("information.csv", "a")
-
-def file_read():
-    return
-
-def file_write():
-    return
-
-def current_standings():
-    return
-
-
-def report_match():
-    return
-
-
-def get_match_history():
-   return
-
-
-def get_player_stats():
-    return
-
-
-def add_player(lower_usernames, num_players):
-    
-    check = False
-    confirm = ''
-
-    while not check:
-        username = input("\nEnter your username. \n :: ")
-        #Check length
-        if len(username) > 12:
-            print("\nUsername can't exceed 12 characters.")
-            continue
-        #Check repeats
-        if username.lower() in lower_usernames:
-            print("\nUsername already taken. Enter a different username.")
-            continue
-        #Check user validation
-        valid = ['y','n']
-        confirm = input("\nIs [" + username + "] the username you want? Yes(y) | No(n). \n :: ")
-
-        while confirm.lower() not in valid:
-            print("\nEnter a valid response.")
-            confirm = input("Is [" + username + "] the username you want? Yes(y) | No(n). \n :: ") 
-            
-        if confirm.lower() == 'n':
-            continue
-        #If user confirms, exit loop. Move on.
-        if confirm.lower() == 'y':
-            check = True
-
-
-    #Do same method for user's name.
-    check = False
-    while not check:
-        name = input("\nEnter your first name and the first initial of your last name. \n :: ")
-
-        valid = ['y','n']
-        confirm = input("\nIs [" + name + "] the correct name? Yes(y) | No(n). \n :: ")
-
-        while confirm.lower() not in valid:
-            print("\nEnter a valid response.")
-            confirm = input("Is [" + name + "] the correct name? Yes(y) | No(n). \n :: ") 
-            
-        if confirm.lower() == 'n':
-            continue
-        if confirm.lower() == 'y':
-            check = True
-
-
-    num_players += 1
-
-    file1 = open("information.csv", "r")
-    update_players = file1.readlines()
-    update_players[1] = (str(num_players) +",,,,,\n")
-    file1.close()
-    file1 = open("information.csv", "w")
-    file1.writelines(update_players)
-    file1.close()
-
-    print("\nDone")
-
-    return Player(username,name)
-
-
-def remove_player():
-    return
-
-    
 def main():
 
     inf = open("information.csv", "r")
+    dataHandler = DataHandler()
+
 
     num_players = inf.readline().strip()
     num_players = int(num_players[0])
