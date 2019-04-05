@@ -2,6 +2,12 @@ from Player import Player
 import math
 import csv
 
+def check_cancel(n):
+    if n.lower() == 'cancel':
+        return True
+    else:
+        return False
+
 class DataHandler():
 
     def __init__(self):
@@ -117,14 +123,26 @@ class DataHandler():
             print("\nEnter the usernames of the players that played.")
 
         player1 = input("Player 1 :: ")
+        check = check_cancel(player1)
+        if check == True:
+            return
         while player1.lower() not in self.lower_usernames:
             print("Player not found. Try again.")
             player1 = input("Player 1 :: ")
+            check = check_cancel(player1)
+            if check == True:
+                return
 
         player2 = input("Player 2 :: ")
+        check = check_cancel(player2)
+        if check == True:
+            return
         while player2.lower() not in self.lower_usernames:
             print("Player not found. Try again.")
             player2 = input("Player 2 :: ")
+            check = check_cancel(player2)
+            if check == True:
+                return
 
         players = [player1.lower(),player2.lower()]
         player1 = self.player_list[self.lower_usernames.index(player1.lower())].username
@@ -132,16 +150,28 @@ class DataHandler():
 
         print("\nWho won the match?", player1,"or", player2 + "?")
         result = input(" :: ")
+        check = check_cancel(result)
+        if check == True:
+            return
         while result.lower() not in players:
             print("Please enter a valid response.")
             result = input(" :: ")
+            check = check_cancel(result)
+            if check == True:
+                return
 
         print("\nWhat was the score? Enter the number associated with the score.")
         print("1) 2-0\n2) 2-1")
         score = input(" :: ")
+        check = check_cancel(score)
+        if check == True:
+            return
         while score < '1' or score > '2':
             print("Please enter a valid response.")
-            score = input(" :: ")   
+            score = input(" :: ") 
+            check = check_cancel(score)
+            if check == True:
+                return  
         
         if result.lower() == player1.lower():
             result = player1
@@ -287,9 +317,15 @@ class DataHandler():
             print("\nWho's match history would you like to view? Enter their username.")
 
         user_history = input(" :: ")
+        check = check_cancel(user_history)
+        if check == True:
+            return
         while user_history.lower() not in self.lower_usernames:
             print("Please enter a valid username")
             user_history = input(" :: ")
+            check = check_cancel(user_history)
+            if check == True:
+                return
 
         user_history = self.player_list[self.lower_usernames.index(user_history.lower())].username
 
@@ -331,6 +367,13 @@ class DataHandler():
 
         while not check:
             username = input("\nEnter your username. \n :: ")
+            if username.lower() == 'cancel' and g != 0:
+                print("\nEnter a valid username.")
+                continue
+            
+            check = check_cancel(username)
+            if check == True and g == 0:
+                return
             #Check length
             if len(username) > 12:
                 print("\nUsername can't exceed 12 characters.")
@@ -342,10 +385,16 @@ class DataHandler():
             #Check user validation
             valid = ['y','n']
             confirm = input("\nIs [" + username + "] the username you want? Yes(y) | No(n). \n :: ")
+            check = check_cancel(confirm)
+            if check == True and g == 0:
+                return
 
             while confirm.lower() not in valid:
                 print("\nEnter a valid response.")
                 confirm = input("Is [" + username + "] the username you want? Yes(y) | No(n). \n :: ") 
+                check = check_cancel(confirm)
+                if check == True and g == 0:
+                    return
                 
             if confirm.lower() == 'n':
                 continue
@@ -358,14 +407,22 @@ class DataHandler():
         check = False
         while not check:
             name = input("\nEnter your first name and the first initial of your last name. \n :: ")
+            if name.lower() == 'cancel' and g != 0:
+                print("\nEnter a valid name.")
+                continue
 
             valid = ['y','n']
             confirm = input("\nIs [" + name + "] the correct name? Yes(y) | No(n). \n :: ")
+            check = check_cancel(confirm)
+            if check == True and g == 0:
+                return
 
             while confirm.lower() not in valid:
                 print("\nEnter a valid response.")
                 confirm = input("Is [" + name + "] the correct name? Yes(y) | No(n). \n :: ") 
-                
+                check = check_cancel(confirm)
+                if check == True and g == 0:
+                    return
             if confirm.lower() == 'n':
                 continue
             if confirm.lower() == 'y':
@@ -430,9 +487,15 @@ class DataHandler():
             print("\nEnter a player's username.")
             
         user_stats = input(" :: ")
+        check = check_cancel(user_stats)
+        if check == True:
+            return
         while user_stats.lower() not in self.lower_usernames:
             print("Please enter a valid username.")
             user_stats = input(" :: ")
+            check = check_cancel(user_stats)
+            if check == True:
+                return
 
         user_stats = self.player_list[self.lower_usernames.index(user_stats.lower())].username
         name = self.user_data[user_stats].name
@@ -466,7 +529,7 @@ class DataHandler():
         return
 
     def remove_player(self): #Done
-        
+                
         if len(self.player_list) == 0:
             print("There are no registered users.")
             return
@@ -502,17 +565,27 @@ class DataHandler():
             print("This area is case sensitive.")
         
         user_stats = input(" :: ")
+        check = check_cancel(user_stats)
+        if check == True:
+            return
         while user_stats.lower() not in self.lower_usernames:
             print("Enter a valid username.")
             user_stats = input(" :: ")
+            check = check_cancel(user_stats)
+            if check == True:
+                return
 
-        print("\nThis process requires admin approval. Enter n to exit.")
+        print("\nThis process requires admin approval.")
         input_password = input("Password :: ")
-        if input_password == 'n' or input_password == 'N':
+        check = check_cancel(input_password)
+        if check == True:
             return
         while input_password != password:
             print("Invalid password.")
             input_password = input("Password :: ")
+            check = check_cancel(input_password)
+            if check == True:
+                return
 
         user_stats = self.player_list[self.lower_usernames.index(user_stats.lower())].username
 
