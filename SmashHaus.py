@@ -20,15 +20,18 @@ def main():
 
     a = "Smash Hoüs 405"
     b = "What would you like to do?"
-    c = "Enter the number of the task you would like to run."
+    c = "At any point, enter 'cancel' to exit"    
+    d = "Enter the number of the task you would like to run."
     a = a.center(60)
     b = b.center(60)
     c = c.center(60)
+    d = d.center(60)
 
     print("# ============================================================== #")
     print("|| " + a + " ||")
     print("|| " + b + " ||")
     print("|| " + c + " ||")
+    print("|| " + d + " ||")
     print("|| " + format(" ||", ">63"))
     print("|| 1. Current standings" + format(" ||", ">43"))
     print("|| 2. Report match results." + format(" ||", ">39"))
@@ -36,7 +39,6 @@ def main():
     print("|| 4. Get player statistics." + format(" ||", ">38"))
     print("|| 5. Add new player." + format(" ||", ">45"))
     print("|| 6. Remove a player." + format(" ||", ">44"))
-    print("|| 7. Exit." + format(" ||", ">55"))
     print("# ============================================================== #")
 
     user_input = 0
@@ -54,6 +56,7 @@ def main():
             x = x.center(60)
             print("# ============================================================== #")
             print("|| " + x + " ||")
+            print("|| " + c + " ||")
             print("# ============================================================== #")
             print("|| 1. Current standings" + format(" ||", ">43"))
             print("|| 2. Report match results." + format(" ||", ">39"))
@@ -61,7 +64,6 @@ def main():
             print("|| 4. Get player statistics." + format(" ||", ">38"))
             print("|| 5. Add new player." + format(" ||", ">45"))
             print("|| 6. Remove a player." + format(" ||", ">44"))
-            print("|| 7. Exit." + format(" ||", ">55"))
             print("# ============================================================== #")
         user_input = input(":: ")
         
@@ -92,7 +94,7 @@ def main():
         elif user_input == '6':
             dataHandler.remove_player()
         
-        elif user_input == '7':
+        elif user_input.lower() == 'cancel':
             break
         
         count += 1
